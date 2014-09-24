@@ -112,7 +112,7 @@ $('#pagepiling').pagePiling({
 });
 ```
 
-- `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** if you use anchors, they can not have the same value as any ID element on the site (or NAME element for IE).
+- `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section. **Be careful!** if you use anchors, they can not have the same value as any ID element on the site (or NAME element for IE).
 
 **Important** It is helpful to understand that the values in the `anchors` option array correlate directly to the element with the class of `.section` by it's position in the markup.
 
@@ -123,7 +123,7 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 
 - `loopBottom`: (default `false`) Defines whether scrolling down in the last section should scroll to the first one or not.
 
-- `css3`: (default `true`). Defines wheter to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3. If this option is set to `true` and the browser doesn't support CSS3, a jQuery fallback will be used instead.
+- `css3`: (default `true`). Defines wheter to use JavaScript or CSS3 transforms to scroll within sections. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3. If this option is set to `true` and the browser doesn't support CSS3, a jQuery fallback will be used instead.
 
 - `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`)
 
@@ -131,7 +131,7 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 
 - `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard
 
-- `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
+- `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section.
 
 - `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
 
@@ -177,8 +177,8 @@ $.fn.pagePiling.moveSectionDown();
 ### moveTo(section)
 Scrolls the page to the given section.
 ```javascript
-/*Scrolling to the section with the anchor link `firstSlide`  */
-$.fn.pagePiling.moveTo('firstSlide');
+/*Scrolling to the section with the anchor link `firstSection`  */
+$.fn.pagePiling.moveTo('firstSection');
 
 ```
 
@@ -235,7 +235,7 @@ Example:
 			}
 
 			//using anchorLink
-			if(anchorLink == 'secondSlide'){
+			if(anchorLink == 'secondPage'){
 				alert("Section 2 ended loading");
 			}
 		}
