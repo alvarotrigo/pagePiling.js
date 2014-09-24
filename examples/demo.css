@@ -160,7 +160,11 @@ p{
 	-o-transition: background-position .1s linear;
 	transition: background-position .1s linear;
 }
-
+#donations a {
+	color: #333;
+	color: rgba(0, 0, 0, 0.5);
+	font-size: 80%;
+}
 #infoMenu{
 	height: 20px;
 	color: #f2f2f2;
