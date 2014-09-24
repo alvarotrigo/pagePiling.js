@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 0.0.1 (Beta)
+ * pagepiling.js 0.0.2 (Beta)
  *
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
@@ -187,6 +187,11 @@
 
             zIndex = zIndex - 1;
         }).promise().done(function(){
+            //vertical centered of the navigation + first bullet active
+            if(options.navigation){
+                $('#pp-nav').css('margin-top', '-' + ($('#pp-nav').height()/2) + 'px');
+                $('#pp-nav').find('li').eq($('.pp-section.active').index('.pp-section')).find('a').addClass('active');
+            }
 
             $(window).on('load', function() {
                 scrollToAnchor();
@@ -229,7 +234,6 @@
             if(typeof animated === 'undefined'){
                 animated = true;
             }
-            console.log("animated: " + animated);
 
             if(typeof anchorLink !== 'undefined'){
                 setURLHash(anchorLink);
@@ -352,7 +356,6 @@
             //getting the anchor link in the URL and deleting the `#`
             var value =  window.location.hash.replace('#', '');
             var sectionAnchor = value;
-            console.log(sectionAnchor);
             var section = $('.pp-section[data-anchor="'+sectionAnchor+'"]');
 
             if(section.length > 0){  //if theres any #
@@ -706,7 +709,7 @@
         */
         function addVerticalNavigation(){
             $('body').append('<div id="pp-nav"><ul></ul></div>');
-            nav = $('#pp-nav');
+            var nav = $('#pp-nav');
 
             nav.css('color', options.navigation.textColor);
 
@@ -729,6 +732,15 @@
 
             nav.find('span').css('border-color', options.navigation.bulletsColor);
         }
+
+        /**
+        * Scrolls to the section when clicking the navigation bullet
+        */
+        $(document).on('click touchstart', '#pp-nav a', function(e){
+            e.preventDefault();
+            var index = $(this).parent().index();
+            scrollPage($('.pp-section').eq(index));
+        });
 
         /**
         * Navigation tooltips
