@@ -3,12 +3,13 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>pagePiling.js plugin - Looping</title>
+	<title>pagePiling.js plugin - Scrolling speed</title>
 	<meta name="author" content="Alvaro Trigo Lopez" />
 	<meta name="description" content="pagePiling.js plugin by Alvaro Trigo." />
 	<meta name="keywords"  content="pile,piling,piling.js,stack,pages,scrolling,stacking,touch,fullpile,scroll,plugin,jquery" />
 	<meta name="Resource-type" content="Document" />
 
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400,700" />
 	<link rel="stylesheet" type="text/css" href="../jquery.pagepiling.css" />
 	<link rel="stylesheet" type="text/css" href="examples.css" />
 
@@ -16,21 +17,36 @@
 
 	<script type="text/javascript" src="../jquery.pagepiling.min.js"></script>
 	<script type="text/javascript">
-		var deleteLog = false;
-
 		$(document).ready(function() {
 	    	$('#pagepiling').pagepiling({
 	    		menu: '#menu',
-	    		anchors: ['page1', 'page2', 'page3'],
+	    		anchors: ['page1', 'page2', 'page3', 'page4'],
 			    sectionsColor: ['#bfda00', '#2ebe21', '#2C3E50', '#51bec4'],
-			    loopTop: true,
-			    loopBottom: true
+			    navigation: {
+			    	'position': 'right',
+			   		'tooltips': ['Page 1', 'Page 2', 'Page 3', 'Pgae 4']
+			   	}
 			});
 	    });
     </script>
+
+    <style>
+    	.pp-easing {
+		    -webkit-transition: all 3000ms cubic-bezier(0.550, 0.085, 0.000, 0.990);
+		    -moz-transition: all 3000ms cubic-bezier(0.550, 0.085, 0.000, 0.990);
+		    -o-transition: all 3000ms cubic-bezier(0.550, 0.085, 0.000, 0.990);
+		    transition: all 3000ms cubic-bezier(0.550, 0.085, 0.000, 0.990);
+		    /* custom */
+		    -webkit-transition-timing-function: cubic-bezier(0.550, 0.085, 0.000, 0.990);
+		    -moz-transition-timing-function: cubic-bezier(0.550, 0.085, 0.000, 0.990);
+		    -o-transition-timing-function: cubic-bezier(0.550, 0.085, 0.000, 0.990);
+		    transition-timing-function: cubic-bezier(0.550, 0.085, 0.000, 0.990);
+		    /* custom */
+		}
+
+    </style>
 </head>
 <body>
-
 	<ul id="menu">
 		<li data-menuanchor="page1" class="active"><a href="#page1">Page 1</a></li>
 		<li data-menuanchor="page2"><a href="#page2">Page 2</a></li>
@@ -39,19 +55,20 @@
 
 	<div id="pagepiling">
 	    <div class="section" id="section1">
-	    	<h1>pagePiling.js</h1>
-			<p>Looping top and bottom enabled</p>
+	    	<h1>Set your own speed!</h1>
+			<p>Just override the `.pp-easing` class located in the CSS file.</p>
+			<br />
 	    </div>
 	    <div class="section" id="section2">
 	    	<div class="intro">
-	    		<h1>Looping!</h1>
-				<p>Go to the first section and scroll up or to the last one and scroll down to see how it works.</p>
+	    		<h1>Using jQuery?</h1>
+				<p>When using css3:false, use the `scrollingSpeed` option to set the animation speed for jQuery animations.</p>
 	    	</div>
 	    </div>
 	    <div class="section" id="section4">
 	    	<div class="intro">
-	    		<h1>Scroll Down</h1>
-				<p>And it will loop to the first section</p>
+	    		<h1>Customizable</h1>
+				<p>You can even change the kind of animation!</p>
 	    	</div>
 	    </div>
 	</div>
