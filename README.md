@@ -116,8 +116,8 @@ $('#pagepiling').pagePiling({
 
 **Important** It is helpful to understand that the values in the `anchors` option array correlate directly to the element with the class of `.section` by it's position in the markup.
 
-- `easing`: (default `swing`) Defines the transition effect to use for the vertical and horizontal scrolling.
-It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jqueryui.com/) for using some of its transitions. Other libraries could be used instead.
+- `easing`: (default `swing`) Defines the transition effect to use for the vertical scrolling.
+It requires [jQuery UI](http://jqueryui.com/) in order to use any other transition other than `swing` and `linear`. Other libraries could be used instead.
 
 - `loopTop`: (default `false`) Defines whether scrolling up in the first section should scroll to the last one or not.
 
