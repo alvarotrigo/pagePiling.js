@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 0.0.2 (Beta)
+ * pagepiling.js 0.0.3 (Beta)
  *
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
@@ -37,6 +37,7 @@
                 'position': 'right',
                 'tooltips': ['section1', 'section2', 'section3', 'section4']
             },
+            normalScrollElements: null,
             normalScrollElementTouchThreshold: 5,
             touchSensitivity: 5,
             keyboardScrolling: true,
@@ -471,6 +472,16 @@
                 }
             }
         });
+
+        if(options.normalScrollElements){
+            $(document).on('mouseenter', options.normalScrollElements, function () {
+                $.fn.pagepiling.setMouseWheelScrolling(false);
+            });
+
+            $(document).on('mouseleave', options.normalScrollElements, function(){
+                $.fn.pagepiling.setMouseWheelScrolling(true);
+            });
+        }
 
         /**
          * Detecting mousewheel scrolling
