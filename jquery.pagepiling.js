@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 0.0.3 (Beta)
+ * pagepiling.js 0.0.4 (Beta)
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -666,10 +666,10 @@
         function touchMoveHandler(event){
             var e = event.originalEvent;
 
-            event.preventDefault();
-
             // additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
             if (!checkParentForNormalScrollElement(event.target)) {
+                event.preventDefault();
+
                 var activeSection = $('.pp-section.active');
                 var scrollable = isScrollable(activeSection);
 
