@@ -1,21 +1,26 @@
 {
   "name": "pagePiling.js",
-  "version": "1.0.0",
+  "version": "0.0.4",
   "homepage": "https://github.com/alvarotrigo/pagePiling.js",
   "authors": [
-    "alvarotrigo"
+    "Alvaro Trigo https://github.com/alvarotrigo"
   ],
-  "description": "Beautiful Fullscreen Scrolling Website-Template",
-  "main": ["jquery.pagepiling.min.js","jquery.pagepiling.css"],
+  "description": "Create a beautiful scrolling pile of pages",
+  "main": [
+    "jquery.pagepiling.min.js",
+    "jquery.pagepiling.css"
+  ],
   "keywords": [
     "website",
     "template",
     "scroll",
     "scrolling",
     "fullscreen",
-    "html",
-    "css",
-    "js",
+    "onepage",
+    "singlepage",
+    "pile",
+    "page",
+    "layout",
     "javascript"
   ],
   "license": "MIT",
@@ -26,5 +31,8 @@
     "test",
     "tests",
     "examples"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "1.11.1"
+  }
 }
