@@ -1,0 +1,30 @@
+{
+  "name": "pagePiling.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/alvarotrigo/pagePiling.js",
+  "authors": [
+    "alvarotrigo"
+  ],
+  "description": "Beautiful Fullscreen Scrolling Website-Template",
+  "main": ["jquery.pagepiling.min.js","jquery.pagepiling.css"],
+  "keywords": [
+    "website",
+    "template",
+    "scroll",
+    "scrolling",
+    "fullscreen",
+    "html",
+    "css",
+    "js",
+    "javascript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "examples"
+  ]
+}
