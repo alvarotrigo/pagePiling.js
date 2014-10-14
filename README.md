@@ -283,11 +283,14 @@ Example:
 ```
 
 ## Resources
+
 [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/)
 
 
 ## Who is using pagePiling.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
+
+- http://fngeats.com/
 
 ## Donations
 Donations would be more than welcome :)
