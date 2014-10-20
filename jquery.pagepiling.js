@@ -22,6 +22,7 @@
 
         // Create some defaults, extending them with any options that were provided
         options = $.extend({
+            direction: 'vertical',
             menu: null,
             verticalCentered: true,
             sectionsColor: [],
@@ -244,7 +245,11 @@
 
             //moving sections up making them disappear
             if (activeSection.index('.pp-section') < sectionIndex) {
-                var translate3d = 'translate3d(0px, -100%, 0px)';
+                if (options.direction === 'vertical') {
+                  var translate3d = 'translate3d(0px, -100%, 0px)';
+                } else {
+                  var translate3d = 'translate3d(-100%, 0px, 0px)';
+                }
                 var scrolling = '-100%';
 
                 var sectionsToMove = $('.pp-section').map(function(index){
@@ -256,7 +261,11 @@
                 if(!options.css3){
                     sectionsToMove.each(function(index){
                         if(index != activeSection.index('.pp-section')){
-                            $(this).css({'top': scrolling})
+                            if (options.direction === 'vertical') {
+                              $(this).css({'top': scrolling})
+                            } else {
+                              $(this).css({'left': scrolling})
+                            }
                         }
                     });
                 }
@@ -281,7 +290,12 @@
 
                 var readjustSections = function(){
                     sectionsToMove.each(function(index){
-                        $(this).css({'top': scrolling})
+                        if (options.direction === 'vertical') {
+                          $(this).css({'top': scrolling})
+                        } else {
+                        
+                          $(this).css({'left': scrolling})
+                        }
                     });
                 };
             }
@@ -304,21 +318,38 @@
                     afterSectionLoads();
                 }, options.scrollingSpeed);
             }else{
-                if(animated){
-                    animateSection.animate({
-                        'top': scrolling
-                    }, options.scrollingSpeed, options.easing, function () {
-                        readjustSections();
+                if (options.direction === 'vertical') {
+                  if(animated){
+                      animateSection.animate({
+                          'top': scrolling
+                      }, options.scrollingSpeed, options.easing, function () {
+                          readjustSections();
 
-                        afterSectionLoads();
-                    });
+                          afterSectionLoads();
+                      });
+                  }else{
+                      animateSection.css('top', scrolling);
+                      setTimeout(function(){
+                          readjustSections();
+                          afterSectionLoads();
+                      },400);
+                  }
                 }else{
-                    animateSection.css('top', scrolling);
-                    setTimeout(function(){
-                        readjustSections();
-                        afterSectionLoads();
-                    },400);
+                   if(animated){
+                      animateSection.animate({
+                          'left': scrolling
+                      }, options.scrollingSpeed, options.easing, function () {
+                          readjustSections();
 
+                          afterSectionLoads();
+                      });
+                  }else{
+                      animateSection.css('left', scrolling);
+                      setTimeout(function(){
+                          readjustSections();
+                          afterSectionLoads();
+                      },400);
+                  }               
                 }
             }
 
@@ -333,13 +364,21 @@
         /**
         * Scrolls the site without anymations (usually used in the background without the user noticing it)
         */
-        function silentScroll(section, top){
+        function silentScroll(section, offset){
             if (options.css3) {
-                var translate3d = 'translate3d(0px, ' + top + ', 0px)';
+                if (options.direction === 'vertical') {
+                  var translate3d = 'translate3d(0px, ' + offset + ', 0px)';
+                }else{
+                  var translate3d = 'translate3d(' + offset + ', 0px, 0px)';
+                }
                 transformContainer(section, translate3d, false);
             }
             else {
-                section.css("top", top);
+                if (options.direction === 'vertical') {
+                  section.css("top", offset);
+                }else{
+                  section.css("left", offset);
+                }
             }
         }
 
@@ -435,7 +474,7 @@
             if(options.keyboardScrolling && !isMoving()){
                 //Moving the main page with the keyboard arrows if keyboard scrolling is enabled
                 switch (e.which) {
-                    //up
+                        //up
                     case 38:
                     case 33:
                         $.fn.pagepiling.moveSectionUp();
@@ -459,12 +498,12 @@
 
                         //left
                     case 37:
-                        $.fn.pagepiling.moveSlideLeft();
+                        $.fn.pagepiling.moveSectionUp();
                         break;
 
                         //right
                     case 39:
-                        $.fn.pagepiling.moveSlideRight();
+                        $.fn.pagepiling.moveSectionDown();
                         break;
 
                     default:
