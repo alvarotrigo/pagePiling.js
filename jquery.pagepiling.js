@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 0.0.4 (Beta)
+ * pagepiling.js 0.0.5 (Beta)
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -210,155 +210,174 @@
             element.addClass('pp-table').wrapInner('<div class="pp-tableCell" style="height:100%" />');
         }
 
-        /**
-        * Determines the direction of the movement (up or down)
-        */
-        function getYmovement(){
-             var sectionIndex = destination.index('.pp-section');
 
-             if( $('.pp-section.active').index('.pp-section') < sectionIndex ){
-                return 'down';
-             }
-             return 'up';
+       /**
+        * Retuns `up` or `down` depending on the scrolling movement to reach its destination
+        * from the current section.
+        */
+        function getYmovement(destiny){
+            var fromIndex = $('.pp-section.active').index('.pp-section');
+            var toIndex = destiny.index('.pp-section');
+
+            if(fromIndex > toIndex){
+                return 'up';
+            }
+            return 'down';
         }
 
         /**
         * Scrolls the page to the given destination
         */
         function scrollPage(destination, animated) {
-            var activeSection = $('.pp-section.active');
-            var anchorLink  = destination.data('anchor');
-            var sectionIndex = destination.index('.pp-section');
-            var toMove = destination;
-            var yMovement = getYmovement(destination);
-            var leavingSection = activeSection.index('.pp-section') + 1;
+            var v ={
+                destination: destination,
+                animated: animated,
+                activeSection: $('.pp-section.active'),
+                anchorLink: destination.data('anchor'),
+                sectionIndex: destination.index('.pp-section'),
+                toMove: destination,
+                yMovement: getYmovement(destination),
+                leavingSection: $('.pp-section.active').index('.pp-section') + 1
+            };
 
-            if(typeof animated === 'undefined'){
-                animated = true;
+
+            if(typeof v.animated === 'undefined'){
+                v.animated = true;
             }
 
-            if(typeof anchorLink !== 'undefined'){
-                setURLHash(anchorLink);
+            if(typeof v.anchorLink !== 'undefined'){
+                setURLHash(v.anchorLink);
             }
 
-            destination.addClass('active').siblings().removeClass('active');
+            v.destination.addClass('active').siblings().removeClass('active');
+
+            v.sectionsToMove = getSectionsToMove(v);
 
             //moving sections up making them disappear
-            if (activeSection.index('.pp-section') < sectionIndex) {
-                if (options.direction === 'vertical') {
-                  var translate3d = 'translate3d(0px, -100%, 0px)';
-                } else {
-                  var translate3d = 'translate3d(-100%, 0px, 0px)';
-                }
-                var scrolling = '-100%';
-
-                var sectionsToMove = $('.pp-section').map(function(index){
-                    if (index < destination.index('.pp-section')){
-                        return $(this);
-                    }
-                });
+            if (v.yMovement === 'down') {
+                v.translate3d = getTranslate3d();
+                v.scrolling = '-100%';
 
                 if(!options.css3){
-                    sectionsToMove.each(function(index){
-                        if(index != activeSection.index('.pp-section')){
-                            if (options.direction === 'vertical') {
-                              $(this).css({'top': scrolling})
-                            } else {
-                              $(this).css({'left': scrolling})
-                            }
+                    v.sectionsToMove.each(function(index){
+                        if(index != v.activeSection.index('.pp-section')){
+                            $(this).css(getScrollProp(v.scrolling));
                         }
                     });
                 }
 
-                var animateSection = activeSection;
-                var readjustSections = function(){};
-
+                v.animateSection = v.activeSection;
             }
 
             //moving section down to the viewport
             else {
-                var translate3d = 'translate3d(0px, 0px, 0px)';
-                var scrolling = '0';
+                v.translate3d = 'translate3d(0px, 0px, 0px)';
+                v.scrolling = '0';
 
-                var sectionsToMove = $('.pp-section').map(function(index){
-                    if (index > destination.index('.pp-section')){
+                v.animateSection = destination;
+            }
+
+            $.isFunction(options.onLeave) && options.onLeave.call(this, v.leavingSection, (v.sectionIndex + 1), v.yMovement);
+
+            performMovement(v);
+
+            activateMenuElement(v.anchorLink);
+            activateNavDots(v.anchorLink, v.sectionIndex);
+            lastScrolledDestiny = v.anchorLink;
+
+            var timeNow = new Date().getTime();
+            lastAnimation = timeNow;
+        }
+
+        /**
+        * Performs the movement (by CSS3 or by jQuery)
+        */
+        function performMovement(v){
+            if(options.css3){
+                transformContainer(v.animateSection, v.translate3d, v.animated);
+
+                v.sectionsToMove.each(function(){
+                    transformContainer($(this), v.translate3d, v.animated);
+                });
+
+                setTimeout(function () {
+                    afterSectionLoads(v);
+                }, options.scrollingSpeed);
+            }else{
+                v.scrollOptions = getScrollProp(v.scrolling);
+
+                if(v.animated){
+                    v.animateSection.animate(
+                        v.scrollOptions
+                    , options.scrollingSpeed, options.easing, function () {
+                        readjustSections(v);
+                        afterSectionLoads(v);
+                    });
+                }else{
+                    v.animateSection.css(getScrollProp(v.scrolling));
+                    setTimeout(function(){
+                        readjustSections(v);
+                        afterSectionLoads(v);
+                    },400);
+                }
+            }
+        }
+
+        /**
+        * Actions to execute after a secion is loaded
+        */
+        function afterSectionLoads(v){
+            //callback (afterLoad) if the site is not just resizing and readjusting the slides
+            $.isFunction(options.afterLoad) && options.afterLoad.call(this, v.anchorLink, (v.sectionIndex + 1));
+        }
+
+
+        function getSectionsToMove(v){
+            var sectionToMove;
+
+            if(v.yMovement === 'down'){
+                sectionToMove = $('.pp-section').map(function(index){
+                    if (index < v.destination.index('.pp-section')){
                         return $(this);
                     }
                 });
+            }else{
+                sectionToMove = $('.pp-section').map(function(index){
+                    if (index > v.destination.index('.pp-section')){
+                        return $(this);
+                    }
+                });
+            }
 
-                var animateSection = destination;
+            return sectionToMove;
+        }
 
-                var readjustSections = function(){
-                    sectionsToMove.each(function(index){
-                        if (options.direction === 'vertical') {
-                          $(this).css({'top': scrolling})
-                        } else {
-                        
-                          $(this).css({'left': scrolling})
-                        }
+        /**
+        * Returns the sections to re-adjust in the background after the section loads.
+        */
+        function readjustSections(v){
+            var readjustSections;
+
+            if(v.yMovement === 'up'){
+                readjustSections = function(){
+                    v.sectionsToMove.each(function(index){
+                        $(this).css(getScrollProp(v.scrolling));
                     });
                 };
             }
 
-            var afterSectionLoads = function(){
-                //callback (afterLoad) if the site is not just resizing and readjusting the slides
-                $.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+            return readjustSections;
+        }
+
+        /**
+        * Gets the property used to create the scrolling effect when using jQuery animations
+        * depending on the plugin direction option.
+        */
+        function getScrollProp(propertyValue){
+            if(options.direction === 'vertical'){
+                return {'top': propertyValue};
             }
-
-            $.isFunction(options.onLeave) && options.onLeave.call(this, leavingSection, (sectionIndex + 1), yMovement);
-
-            if(options.css3){
-                transformContainer(animateSection, translate3d, animated);
-
-                sectionsToMove.each(function(){
-                    transformContainer($(this), translate3d, animated);
-                });
-
-                setTimeout(function () {
-                    afterSectionLoads();
-                }, options.scrollingSpeed);
-            }else{
-                if (options.direction === 'vertical') {
-                  if(animated){
-                      animateSection.animate({
-                          'top': scrolling
-                      }, options.scrollingSpeed, options.easing, function () {
-                          readjustSections();
-
-                          afterSectionLoads();
-                      });
-                  }else{
-                      animateSection.css('top', scrolling);
-                      setTimeout(function(){
-                          readjustSections();
-                          afterSectionLoads();
-                      },400);
-                  }
-                }else{
-                   if(animated){
-                      animateSection.animate({
-                          'left': scrolling
-                      }, options.scrollingSpeed, options.easing, function () {
-                          readjustSections();
-
-                          afterSectionLoads();
-                      });
-                  }else{
-                      animateSection.css('left', scrolling);
-                      setTimeout(function(){
-                          readjustSections();
-                          afterSectionLoads();
-                      },400);
-                  }               
-                }
-            }
-
-            activateMenuElement(anchorLink);
-            activateNavDots(anchorLink, sectionIndex);
-            lastScrolledDestiny = anchorLink;
-
-            var timeNow = new Date().getTime();
-            lastAnimation = timeNow;
+            return {'left': propertyValue};
         }
 
         /**
@@ -366,19 +385,10 @@
         */
         function silentScroll(section, offset){
             if (options.css3) {
-                if (options.direction === 'vertical') {
-                  var translate3d = 'translate3d(0px, ' + offset + ', 0px)';
-                }else{
-                  var translate3d = 'translate3d(' + offset + ', 0px, 0px)';
-                }
-                transformContainer(section, translate3d, false);
+                transformContainer(section, getTranslate3d(), false);
             }
-            else {
-                if (options.direction === 'vertical') {
-                  section.css("top", offset);
-                }else{
-                  section.css("left", offset);
-                }
+            else{
+                section.css(getScrollProp(offset));
             }
         }
 
@@ -512,6 +522,10 @@
             }
         });
 
+        /**
+        * If `normalScrollElements` is used, the mouse wheel scrolling will scroll normally
+        * over the defined elements in the option.
+        */
         if(options.normalScrollElements){
             $(document).on('mouseenter', options.normalScrollElements, function () {
                 $.fn.pagepiling.setMouseWheelScrolling(false);
@@ -587,19 +601,7 @@
             return scrollable;
         }
 
-       /**
-        * Retuns `up` or `down` depending on the scrolling movement to reach its destination
-        * from the current section.
-        */
-        function getYmovement(destiny){
-            var fromIndex = $('.pp-section.active').index('.pp-section');
-            var toIndex = destiny.index('.pp-section');
 
-            if(fromIndex > toIndex){
-                return 'up';
-            }
-            return 'down';
-        }
 
         /**
         * Removes the auto scrolling action fired by the mouse wheel and tackpad.
@@ -860,6 +862,17 @@
             document.body.removeChild(el);
 
             return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+        }
+
+        /**
+        * Gets the translate3d property to apply when using css3:true depending on the `direction` option.
+        */
+        function getTranslate3d(){
+            if (options.direction !== 'vertical') {
+                  return 'translate3d(-100%, 0px, 0px)';
+            }
+
+            return 'translate3d(0px, -100%, 0px)';
         }
 
     };
