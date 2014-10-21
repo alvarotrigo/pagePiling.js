@@ -60,6 +60,7 @@ A more complex initialization with all options set could look like this:
 $(document).ready(function() {
 	$('#pagepiling').pagePiling({
 	    menu: null,
+        direction: 'vertical',
         verticalCentered: true,
         sectionsColor: [],
         anchors: [],
@@ -134,6 +135,8 @@ It requires [jQuery UI](http://jqueryui.com/) in order to use any other transiti
 - `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section.
 
 - `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
+
+- `direction`: (default `vertical`) Defines if the scroll is vertical or horizontal.
 
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the sections. This way the scrolling of the sections will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
