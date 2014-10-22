@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 0.0.6 (Beta)
+ * pagepiling.js 0.0.7 (Beta)
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
