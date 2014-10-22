@@ -701,6 +701,7 @@
             var e = event.originalEvent;
             var touchEvents = getEventsPage(e);
             touchStartY = touchEvents['y'];
+            touchStartX = touchEvents['x'];
         }
 
         /* Detecting touch events
@@ -723,12 +724,24 @@
                   //$('body').append('<span style="position:fixed; top: 250px; left: 20px; z-index:88; font-size: 25px; color: #000;">touchEndY: ' + touchEndY  + '</div>');
 
 
-                    //is the movement greater than the minimum resistance to scroll?
-                    if (Math.abs(touchStartY - touchEndY) > (container.height() / 100 * options.touchSensitivity)) {
-                        if (touchStartY > touchEndY) {
-                            scrolling('down', scrollable);
-                        } else if (touchEndY > touchStartY) {
-                            scrolling('up', scrollable);
+                    //Which movement is more significant? X or Y?
+                    if ( Math.abs(touchStartY - touchEndY) > Math.abs(touchStartX - touchEndX) ) {
+                        //is the movement greater than the minimum resistance to scroll?
+                        if (Math.abs(touchStartY - touchEndY) > (container.height() / 100 * options.touchSensitivity)) {
+                            if (touchStartY > touchEndY) {
+                                scrolling('down', scrollable);
+                            } else if (touchEndY > touchStartY) {
+                                scrolling('up', scrollable);
+                            }
+                        }
+                    } else { 
+                        //is the movement greater than the minimum resistance to scroll?
+                        if (Math.abs(touchStartX - touchEndX) > (container.width() / 100 * options.touchSensitivity)) {
+                            if (touchStartX > touchEndX) {
+                                scrolling('down', scrollable);
+                            } else if (touchEndX > touchStartX) {
+                                scrolling('up', scrollable);
+                            }
                         }
                     }
                 }
