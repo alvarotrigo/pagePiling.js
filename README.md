@@ -30,7 +30,7 @@ As you can see in the example files, you will need to include the JavaScript fil
 
 Terminal:
 ```shell
-bower install alvarotrigo/pagePiling.js
+bower install pagepiling.js
 ```
 
 ###Including files:
