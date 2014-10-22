@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 0.0.5 (Beta)
+ * pagepiling.js 0.0.6 (Beta)
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -240,6 +240,8 @@
                 leavingSection: $('.pp-section.active').index('.pp-section') + 1
             };
 
+            //quiting when activeSection is the target element
+            if(v.activeSection.is(destination)){ return; }
 
             if(typeof v.animated === 'undefined'){
                 v.animated = true;
@@ -450,7 +452,6 @@
                     }else{
                         var section = $('.pp-section').eq( (sectionAnchor -1) );
                     }
-
                     scrollPage(section);
                 }
             }
@@ -791,6 +792,7 @@
         $(document).on('click touchstart', '#pp-nav a', function(e){
             e.preventDefault();
             var index = $(this).parent().index();
+
             scrollPage($('.pp-section').eq(index));
         });
 
