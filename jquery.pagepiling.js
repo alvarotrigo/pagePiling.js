@@ -14,6 +14,7 @@
         var lastScrolledDestiny;
         var lastAnimation = 0;
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
+        var touchStartY = touchStartX = touchEndY = touchEndX = 0;
 
         //Defines the delay to take place before being able to scroll to the next section
         //BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and
@@ -723,23 +724,21 @@
 
                   //$('body').append('<span style="position:fixed; top: 250px; left: 20px; z-index:88; font-size: 25px; color: #000;">touchEndY: ' + touchEndY  + '</div>');
 
-
-                    //Which movement is more significant? X or Y?
-                    if ( Math.abs(touchStartY - touchEndY) > Math.abs(touchStartX - touchEndX) ) {
-                        //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartY - touchEndY) > (container.height() / 100 * options.touchSensitivity)) {
-                            if (touchStartY > touchEndY) {
-                                scrolling('down', scrollable);
-                            } else if (touchEndY > touchStartY) {
-                                scrolling('up', scrollable);
-                            }
-                        }
-                    } else { 
+                    //X movement bigger than Y movement?
+                    if (options.direction === 'horizontal' && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
                         //is the movement greater than the minimum resistance to scroll?
                         if (Math.abs(touchStartX - touchEndX) > (container.width() / 100 * options.touchSensitivity)) {
                             if (touchStartX > touchEndX) {
                                 scrolling('down', scrollable);
                             } else if (touchEndX > touchStartX) {
+                                scrolling('up', scrollable);
+                            }
+                        }
+                    } else {
+                        if (Math.abs(touchStartY - touchEndY) > (container.height() / 100 * options.touchSensitivity)) {
+                            if (touchStartY > touchEndY) {
+                                scrolling('down', scrollable);
+                            } else if (touchEndY > touchStartY) {
                                 scrolling('up', scrollable);
                             }
                         }
