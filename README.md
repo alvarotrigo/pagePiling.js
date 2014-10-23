@@ -27,7 +27,7 @@ It is also designed to work on touch devices such as mobile phones or tablets.
 As you can see in the example files, you will need to include the JavaScript file `jquery.pagepiling.js` (or the minified version `jquery.pagepiling.min.js`) and the css file `jquery.pagepiling.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects.
 
 ### Install using bower:
-Optionally, if you want to install pagePiling.js with bower, you can do it by executing the following command in the terminal:
+Optionally, you can install pagePiling.js with bower:
 Terminal:
 ```shell
 bower install pagepiling.js
