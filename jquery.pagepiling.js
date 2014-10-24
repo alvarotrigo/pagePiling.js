@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 0.0.7 (Beta)
+ * pagepiling.js 0.0.8 (Beta)
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -256,7 +256,7 @@
 
             v.sectionsToMove = getSectionsToMove(v);
 
-            //moving sections up making them disappear
+            //scrolling down (moving sections up making them disappear)
             if (v.yMovement === 'down') {
                 v.translate3d = getTranslate3d();
                 v.scrolling = '-100%';
@@ -272,7 +272,7 @@
                 v.animateSection = v.activeSection;
             }
 
-            //moving section down to the viewport
+            //scrolling up (moving section down to the viewport)
             else {
                 v.translate3d = 'translate3d(0px, 0px, 0px)';
                 v.scrolling = '0';
@@ -314,7 +314,7 @@
                         v.scrollOptions
                     , options.scrollingSpeed, options.easing, function () {
                         readjustSections(v);
-                        afterSectionLoads(v);
+                        readjustSections(v);
                     });
                 }else{
                     v.animateSection.css(getScrollProp(v.scrolling));
@@ -362,11 +362,9 @@
             var readjustSections;
 
             if(v.yMovement === 'up'){
-                readjustSections = function(){
-                    v.sectionsToMove.each(function(index){
-                        $(this).css(getScrollProp(v.scrolling));
-                    });
-                };
+                v.sectionsToMove.each(function(index){
+                    $(this).css(getScrollProp(v.scrolling));
+                });
             }
 
             return readjustSections;
