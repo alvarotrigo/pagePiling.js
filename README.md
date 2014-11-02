@@ -115,7 +115,7 @@ To link the menu with the active section you will have to use the `menu` option 
 - `sectionsColor`:(default `none`) Define the CSS `background-color` property for each section:
 Example:
 ```javascript
-$('#pagepiling').pagePiling({
+$('#pagepiling').pagepiling({
     sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 });
 ```
