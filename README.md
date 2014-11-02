@@ -65,7 +65,7 @@ $(document).ready(function() {
 A more complex initialization with all options set could look like this:
 ```javascript
 $(document).ready(function() {
-	$('#pagepiling').pagePiling({
+	$('#pagepiling').pagepiling({
 	    menu: null,
         direction: 'vertical',
         verticalCentered: true,
@@ -157,7 +157,7 @@ In order to link the elements of the menu with the sections, an HTML 5 data-tag 
 </ul>
 ```
 ```javascript
-$('#pagepiling').pagePiling({
+$('#pagepiling').pagepiling({
     anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
     menu: '#myMenu'
 });
@@ -175,50 +175,50 @@ $('#pagepiling').pagePiling({
 ### moveSectionUp()
 Scrolls one section up:
 ```javascript
-$.fn.pagePiling.moveSectionUp();
+$.fn.pagepiling.moveSectionUp();
 ```
 
 ### moveSectionDown()
 Scrolls one section down:
 ```javascript
-$.fn.pagePiling.moveSectionDown();
+$.fn.pagepiling.moveSectionDown();
 ```
 
 ### moveTo(section)
 Scrolls the page to the given section.
 ```javascript
 /*Scrolling to the section with the anchor link `firstSection`  */
-$.fn.pagePiling.moveTo('firstSection');
+$.fn.pagepiling.moveTo('firstSection');
 
 ```
 
 ```javascript
 //Scrolling to the 3rd section in the site
-$.fn.pagePiling.moveTo(3);
+$.fn.pagepiling.moveTo(3);
 
 //Which is the same as
-$.fn.pagePiling.moveTo(3);
+$.fn.pagepiling.moveTo(3);
 ```
 
 ### setAllowScrolling(boolean)
 Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default).
 
 ```javascript
-$.fn.pagePiling.setAllowScrolling(false);
+$.fn.pagepiling.setAllowScrolling(false);
 ```
 
 ### setKeyboardScrolling(boolean)
 Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys (which is active by default).
 
 ```javascript
-$.fn.pagePiling.setKeyboardScrolling(false);
+$.fn.pagepiling.setKeyboardScrolling(false);
 ```
 
 ### setScrollingSpeed(milliseconds)
 Defines the scrolling speed in milliseconds.
 
 ```javascript
-$.fn.pagePiling.setScrollingSpeed(700);
+$.fn.pagepiling.setScrollingSpeed(700);
 ```
 
 
@@ -235,7 +235,7 @@ In case of not having anchorLinks defined in the plugin the `index` parameter wo
 Example:
 
 ```javascript
-	$('#pagepiling').pagePiling({
+	$('#pagepiling').pagepiling({
 		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
 		afterLoad: function(anchorLink, index){
@@ -264,7 +264,7 @@ Parameters:
 Example:
 
 ```javascript
-	$('#pagepiling').pagePiling({
+	$('#pagepiling').pagepiling({
 		onLeave: function(index, nextIndex, direction){
 			//after leaving section 2
 			if(index == 2 && direction =='down'){
@@ -285,7 +285,7 @@ This callback is fired just after the structure of the page is generated. This i
 Example:
 
 ```javascript
-	$('#pagepiling').pagePiling({
+	$('#pagepiling').pagepiling({
 		afterRender: function(){
 			alert("The resulting DOM stucture is ready");
 		}
