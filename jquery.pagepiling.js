@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 0.0.8 (Beta)
+ * pagepiling.js 0.0.9 (Beta)
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -314,7 +314,7 @@
                         v.scrollOptions
                     , options.scrollingSpeed, options.easing, function () {
                         readjustSections(v);
-                        readjustSections(v);
+                        afterSectionLoads(v);
                     });
                 }else{
                     v.animateSection.css(getScrollProp(v.scrolling));
