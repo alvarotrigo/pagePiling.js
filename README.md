@@ -5,6 +5,7 @@
 Pile your sections one over another and access them scrolling or by URL!
 
 - [Live demo](http://alvarotrigo.com/pagePiling/)
+- [Who is using it](http://alvarotrigo.com/pagePiling/)
 
 Invite me to a coffee
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=pagePiling%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
@@ -299,6 +300,8 @@ Example:
 
 ## Who is using pagePiling.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
+
+[![Facebook](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/facebook-pagepiling.gif)](http://www.facebookgroups.com/)
 
 - http://www.facebookgroups.com/
 - http://fngeats.com/
