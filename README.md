@@ -300,6 +300,7 @@ Example:
 ## Who is using pagePiling.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
 
+- http://www.facebookgroups.com/
 - http://fngeats.com/
 - http://ednahouse.org/statistics/
 - http://sushi.steadfastlight.com/
