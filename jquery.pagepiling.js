@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 0.0.9 (Beta)
+ * pagepiling.js 1.0
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -13,7 +13,7 @@
         var container = $(this);
         var lastScrolledDestiny;
         var lastAnimation = 0;
-        var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
+        var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var touchStartY = touchStartX = touchEndY = touchEndX = 0;
 
         //Defines the delay to take place before being able to scroll to the next section
@@ -29,7 +29,7 @@
             sectionsColor: [],
             anchors: [],
             scrollingSpeed: 700,
-            easing: 'swing',
+            easing: 'easeInQuart',
             loopBottom: false,
             loopTop: false,
             css3: true,
@@ -52,6 +52,9 @@
             afterRender: null
         }, options);
 
+
+        //easeInQuart animation included in the plugin
+        $.extend($.easing,{ easeInQuart: function (x, t, b, c, d) { return c*(t/=d)*t*t*t + b; }});
 
         /**
         * Defines the scrolling speed
@@ -249,7 +252,7 @@
             }
 
             if(typeof v.anchorLink !== 'undefined'){
-                setURLHash(v.anchorLink);
+                setURLHash(v.anchorLink, v.sectionIndex);
             }
 
             v.destination.addClass('active').siblings().removeClass('active');
@@ -396,10 +399,28 @@
         /**
         * Sets the URL hash for a section with slides
         */
-        function setURLHash(anchorLink){
+        function setURLHash(anchorLink, sectionIndex){
             if(options.anchors.length){
                 location.hash = anchorLink;
+
+                setBodyClass(location.hash);
+            }else{
+                setBodyClass(String(sectionIndex));
             }
+        }
+
+        /**
+        * Sets a class for the body of the page depending on the active section / slide
+        */
+        function setBodyClass(text){
+            //removing the #
+            text = text.replace('#','');
+
+            //removing previous anchor classes
+            $("body")[0].className = $("body")[0].className.replace(/\b\s?pp-viewing-[^\s]+\b/g, '');
+
+            //adding the current anchor
+            $("body").addClass("pp-viewing-" + text);
         }
 
         //TO DO
@@ -662,7 +683,7 @@
         function getMSPointer(){
             var pointer;
 
-            //IE >= 11
+            //IE >= 11 & rest of browsers
             if(window.PointerEvent){
                 pointer = { down: "pointerdown", move: "pointermove", up: "pointerup"};
             }
@@ -681,13 +702,9 @@
         */
         function getEventsPage(e){
             var events = new Array();
-            if (window.navigator.msPointerEnabled){
-                events['y'] = e.pageY;
-                events['x'] = e.pageX;
-            }else{
-                events['y'] = e.touches[0].pageY;
-                events['x'] =  e.touches[0].pageX;
-            }
+
+            events['y'] = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
+            events['x'] = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
 
             return events;
         }
