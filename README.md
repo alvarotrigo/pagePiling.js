@@ -164,7 +164,7 @@ $('#pagepiling').pagepiling({
 });
 ```
 
-**Note:** the menu element should be placed outside the pagePiling wrapper in order to avoid problem when ussing `css3:true`. Otherwise it will be appeneded to the `body` by the plugin itself.
+**Note:** the menu element should be placed outside the pagePiling wrapper in order to avoid problem when using `css3:true`. Otherwise it will be appended to the `body` by the plugin itself.
 
 - `navigation`: (default `false`) If set to `true`, it will show a navigation bar made up of small circles.
 
@@ -202,14 +202,14 @@ $.fn.pagepiling.moveTo(3);
 ```
 
 ### setAllowScrolling(boolean)
-Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default).
+Adds or remove the possibility of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default).
 
 ```javascript
 $.fn.pagepiling.setAllowScrolling(false);
 ```
 
 ### setKeyboardScrolling(boolean)
-Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys (which is active by default).
+Adds or remove the possibility of scrolling through sections by using the keyboard arrow keys (which is active by default).
 
 ```javascript
 $.fn.pagepiling.setKeyboardScrolling(false);
@@ -288,7 +288,7 @@ Example:
 ```javascript
 	$('#pagepiling').pagepiling({
 		afterRender: function(){
-			alert("The resulting DOM stucture is ready");
+			alert("The resulting DOM structure is ready");
 		}
 	});
 ```
