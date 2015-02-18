@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 1.0
+ * pagepiling.js 1.2
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -9,7 +9,7 @@
  * ========================================================== */
 
 (function ($) {
-    $.fn.pagepiling = function (options) {
+    $.fn.pagepiling = function (custom) {
         var container = $(this);
         var lastScrolledDestiny;
         var lastAnimation = 0;
@@ -22,7 +22,7 @@
         var scrollDelay = 600;
 
         // Create some defaults, extending them with any options that were provided
-        options = $.extend({
+        options = $.extend(true, {
             direction: 'vertical',
             menu: null,
             verticalCentered: true,
@@ -34,10 +34,10 @@
             loopTop: false,
             css3: true,
             navigation: {
-                'textColor': '#000',
-                'bulletsColor': '#000',
-                'position': 'right',
-                'tooltips': ['section1', 'section2', 'section3', 'section4']
+                textColor: '#000',
+                bulletsColor: '#000',
+                position: 'right',
+                tooltips: null
             },
             normalScrollElements: null,
             normalScrollElementTouchThreshold: 5,
@@ -50,7 +50,7 @@
             afterLoad: null,
             onLeave: null,
             afterRender: null
-        }, options);
+        }, custom);
 
 
         //easeInQuart animation included in the plugin
@@ -710,14 +710,25 @@
         }
 
         /**
+        * As IE >= 10 fires both touch and mouse events when using a mouse in a touchscreen
+        * this way we make sure that is really a touch event what IE is detecting.
+        */
+        function isReallyTouch(e){
+            //if is not IE   ||  IE is detecting `touch` or `pen`
+            return typeof e.pointerType === 'undefined' || e.pointerType != 'mouse';
+        }
+
+        /**
         * Getting the starting possitions of the touch event
         */
         function touchStartHandler(event){
-
             var e = event.originalEvent;
-            var touchEvents = getEventsPage(e);
-            touchStartY = touchEvents['y'];
-            touchStartX = touchEvents['x'];
+
+            if(isReallyTouch(e)){
+                var touchEvents = getEventsPage(e);
+                touchStartY = touchEvents['y'];
+                touchStartX = touchEvents['x'];
+            }
         }
 
         /* Detecting touch events
@@ -726,7 +737,7 @@
             var e = event.originalEvent;
 
             // additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
-            if (!checkParentForNormalScrollElement(event.target)) {
+            if ( !checkParentForNormalScrollElement(event.target) && isReallyTouch(e) ) {
                 event.preventDefault();
 
                 var activeSection = $('.pp-section.active');
