@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 1.2
+ * pagepiling.js 1.3
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -8,8 +8,9 @@
  *
  * ========================================================== */
 
-(function ($) {
+(function ($, document, window, undefined) {
     $.fn.pagepiling = function (custom) {
+        var PP = $.fn.pagepiling;
         var container = $(this);
         var lastScrolledDestiny;
         var lastAnimation = 0;
@@ -37,7 +38,7 @@
                 textColor: '#000',
                 bulletsColor: '#000',
                 position: 'right',
-                tooltips: null
+                tooltips: []
             },
             normalScrollElements: null,
             normalScrollElementTouchThreshold: 5,
@@ -59,14 +60,14 @@
         /**
         * Defines the scrolling speed
         */
-        $.fn.pagepiling.setScrollingSpeed = function(value){
+        PP.setScrollingSpeed = function(value){
            options.scrollingSpeed = value;
         };
 
         /**
         * Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad.
         */
-        $.fn.pagepiling.setMouseWheelScrolling = function (value){
+        PP.setMouseWheelScrolling = function (value){
             if(value){
                 addMouseWheelHandler();
             }else{
@@ -77,12 +78,12 @@
         /**
         * Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures.
         */
-        $.fn.pagepiling.setAllowScrolling = function (value){
+        PP.setAllowScrolling = function (value){
             if(value){
-                $.fn.pagepiling.setMouseWheelScrolling(true);
+                PP.setMouseWheelScrolling(true);
                 addTouchHandler();
             }else{
-                $.fn.pagepiling.setMouseWheelScrolling(false);
+                PP.setMouseWheelScrolling(false);
                 removeTouchHandler();
             }
         };
@@ -90,14 +91,14 @@
         /**
         * Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys
         */
-        $.fn.pagepiling.setKeyboardScrolling = function (value){
+        PP.setKeyboardScrolling = function (value){
             options.keyboardScrolling = value;
         };
 
         /**
         * Moves sectio up
         */
-        $.fn.pagepiling.moveSectionUp = function () {
+        PP.moveSectionUp = function () {
             var prev = $('.pp-section.active').prev('.pp-section');
 
             //looping to the bottom if there's no more sections above
@@ -113,7 +114,7 @@
         /**
         * Moves sectio down
         */
-        $.fn.pagepiling.moveSectionDown = function () {
+        PP.moveSectionDown = function () {
             var next = $('.pp-section.active').next('.pp-section');
 
             //looping to the top if there's no more sections below
@@ -129,7 +130,7 @@
         /**
         * Moves the site to the given anchor or index
         */
-        $.fn.pagepiling.moveTo = function (section){
+        PP.moveTo = function (section){
             var destiny = '';
 
             if(isNaN(section)){
@@ -161,7 +162,7 @@
         });
 
         //init
-        $.fn.pagepiling.setAllowScrolling(true);
+        PP.setAllowScrolling(true);
 
         //creating the navigation dots
         if (!$.isEmptyObject(options.navigation) ) {
@@ -508,33 +509,33 @@
                         //up
                     case 38:
                     case 33:
-                        $.fn.pagepiling.moveSectionUp();
+                        PP.moveSectionUp();
                         break;
 
                         //down
                     case 40:
                     case 34:
-                        $.fn.pagepiling.moveSectionDown();
+                        PP.moveSectionDown();
                         break;
 
                         //Home
                     case 36:
-                        $.fn.pagepiling.moveTo(1);
+                        PP.moveTo(1);
                         break;
 
                         //End
                     case 35:
-                        $.fn.pagepiling.moveTo($('.pp-section').length);
+                        PP.moveTo($('.pp-section').length);
                         break;
 
                         //left
                     case 37:
-                        $.fn.pagepiling.moveSectionUp();
+                        PP.moveSectionUp();
                         break;
 
                         //right
                     case 39:
-                        $.fn.pagepiling.moveSectionDown();
+                        PP.moveSectionDown();
                         break;
 
                     default:
@@ -549,11 +550,11 @@
         */
         if(options.normalScrollElements){
             $(document).on('mouseenter', options.normalScrollElements, function () {
-                $.fn.pagepiling.setMouseWheelScrolling(false);
+                PP.setMouseWheelScrolling(false);
             });
 
             $(document).on('mouseleave', options.normalScrollElements, function(){
-                $.fn.pagepiling.setMouseWheelScrolling(true);
+                PP.setMouseWheelScrolling(true);
             });
         }
 
@@ -594,10 +595,10 @@
         function scrolling(type, scrollable){
             if(type == 'down'){
                 var check = 'bottom';
-                var scrollSection = $.fn.pagepiling.moveSectionDown;
+                var scrollSection = PP.moveSectionDown;
             }else{
                 var check = 'top';
-                var scrollSection = $.fn.pagepiling.moveSectionUp;
+                var scrollSection = PP.moveSectionUp;
             }
 
             if(scrollable.length > 0 ){
@@ -811,7 +812,7 @@
                 if(options.anchors.length){
                     link = options.anchors[cont];
                 }
-                if(typeof options.navigation.tooltips !== 'undefined'){
+                if(options.navigation.tooltips !== 'undefined'){
                     var tooltip = options.navigation.tooltips[cont];
                     if(typeof tooltip === 'undefined'){
                         tooltip = '';
@@ -916,4 +917,4 @@
         }
 
     };
-})(jQuery);
+}(jQuery, document, window));
