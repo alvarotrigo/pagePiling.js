@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 1.3
+ * pagepiling.js 1.4
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -206,7 +206,6 @@
 
             $.isFunction( options.afterRender ) && options.afterRender.call( this);
         });
-
 
         /**
         * Enables vertical centering by wrapping the content and the use of table and table-cell
@@ -611,6 +610,18 @@
             }else{
                 // moved up/down
                 scrollSection();
+            }
+        }
+
+        /**
+        * Return a boolean depending on whether the scrollable element is at the end or at the start of the scrolling
+        * depending on the given type.
+        */
+        function isScrolled(type, scrollable){
+            if(type === 'top'){
+                return !scrollable.scrollTop();
+            }else if(type === 'bottom'){
+                return scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
             }
         }
 

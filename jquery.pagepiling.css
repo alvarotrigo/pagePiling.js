@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 0.0.1 (Beta)
+ * pagepiling.js 1.4
  *
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
@@ -122,4 +122,8 @@ html, body {
 }
 .pp-tooltip.left {
     left: 20px;
+}
+.pp-scrollable{
+    overflow-y: scroll;
+    height: 100%;
 }
