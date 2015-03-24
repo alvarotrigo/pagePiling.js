@@ -107,6 +107,13 @@ For example: http://alvarotrigo.com/pagePiling/#page2
 ### Using a menu
 To link the menu with the active section you will have to use the `menu` option and make use of anchor links (#) as explained below in the options section.
 
+### Creating a scrollable section
+In case you want to have a section with large content and therefore create an scroll bar for that section, you can do it by adding the class `pp-scrollable` to that section:
+
+```html
+<div class="section pp-scrollable"></div>
+```
+
 ## Options
 
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections.
