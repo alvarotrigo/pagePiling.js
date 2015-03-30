@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 1.4
+ * pagepiling.js 1.5
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -629,7 +629,7 @@
         * Determines whether the active section or slide is scrollable through and scrolling bar
         */
         function isScrollable(activeSection){
-            scrollable = activeSection.find('.pp-scrollable');
+            scrollable = activeSection.filter('.pp-scrollable');
 
             return scrollable;
         }
