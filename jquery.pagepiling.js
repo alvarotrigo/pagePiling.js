@@ -1,5 +1,5 @@
 /* ===========================================================
- * pagepiling.js 1.5
+ * pagepiling.js 1.5.1
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -9,13 +9,15 @@
  * ========================================================== */
 
 (function ($, document, window, undefined) {
+    'use strict';
+
     $.fn.pagepiling = function (custom) {
         var PP = $.fn.pagepiling;
         var container = $(this);
         var lastScrolledDestiny;
         var lastAnimation = 0;
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
-        var touchStartY = touchStartX = touchEndY = touchEndX = 0;
+        var touchStartY = 0, touchStartX = 0, touchEndY = 0, touchEndX = 0;
 
         //Defines the delay to take place before being able to scroll to the next section
         //BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and
@@ -23,7 +25,7 @@
         var scrollDelay = 600;
 
         // Create some defaults, extending them with any options that were provided
-        options = $.extend(true, {
+        var options = $.extend(true, {
             direction: 'vertical',
             menu: null,
             verticalCentered: true,
@@ -188,7 +190,7 @@
                 $(this).css('background-color', options.sectionsColor[index]);
             }
 
-            if(options.verticalCentered){
+            if(options.verticalCentered && !$(this).hasClass('pp-scrollable')){
                 addTableClass($(this));
             }
 
@@ -314,8 +316,8 @@
 
                 if(v.animated){
                     v.animateSection.animate(
-                        v.scrollOptions
-                    , options.scrollingSpeed, options.easing, function () {
+                        v.scrollOptions,
+                    options.scrollingSpeed, options.easing, function () {
                         readjustSections(v);
                         afterSectionLoads(v);
                     });
@@ -362,15 +364,11 @@
         * Returns the sections to re-adjust in the background after the section loads.
         */
         function readjustSections(v){
-            var readjustSections;
-
             if(v.yMovement === 'up'){
                 v.sectionsToMove.each(function(index){
                     $(this).css(getScrollProp(v.scrolling));
                 });
             }
-
-            return readjustSections;
         }
 
         /**
@@ -417,10 +415,10 @@
             text = text.replace('#','');
 
             //removing previous anchor classes
-            $("body")[0].className = $("body")[0].className.replace(/\b\s?pp-viewing-[^\s]+\b/g, '');
+            $('body')[0].className = $('body')[0].className.replace(/\b\s?pp-viewing-[^\s]+\b/g, '');
 
             //adding the current anchor
-            $("body").addClass("pp-viewing-" + text);
+            $('body').addClass('pp-viewing-' + text);
         }
 
         //TO DO
@@ -460,17 +458,16 @@
             var sectionAnchor = value[0];
 
             if(sectionAnchor.length){
-                //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
-                var isFirstMove =  (typeof lastScrolledDestiny === 'undefined');
-
                 /*in order to call scrollpage() only once for each destination at a time
                 It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
                 event is fired on every scroll too.*/
                 if (sectionAnchor && sectionAnchor !== lastScrolledDestiny)  {
+                    var section;
+
                     if(isNaN(sectionAnchor)){
-                        var section = $('[data-anchor="'+sectionAnchor+'"]');
+                        section = $('[data-anchor="'+sectionAnchor+'"]');
                     }else{
-                        var section = $('.pp-section').eq( (sectionAnchor -1) );
+                        section = $('.pp-section').eq( (sectionAnchor -1) );
                     }
                     scrollPage(section);
                 }
@@ -592,12 +589,15 @@
         * by 'automatically' scrolling a section or by using the default and normal scrolling.
         */
         function scrolling(type, scrollable){
+            var check;
+            var scrollSection;
+
             if(type == 'down'){
-                var check = 'bottom';
-                var scrollSection = PP.moveSectionDown;
+                check = 'bottom';
+                scrollSection = PP.moveSectionDown;
             }else{
-                var check = 'top';
-                var scrollSection = PP.moveSectionUp;
+                check = 'top';
+                scrollSection = PP.moveSectionUp;
             }
 
             if(scrollable.length > 0 ){
@@ -629,12 +629,8 @@
         * Determines whether the active section or slide is scrollable through and scrolling bar
         */
         function isScrollable(activeSection){
-            scrollable = activeSection.filter('.pp-scrollable');
-
-            return scrollable;
+            return activeSection.filter('.pp-scrollable');
         }
-
-
 
         /**
         * Removes the auto scrolling action fired by the mouse wheel and tackpad.
@@ -645,7 +641,7 @@
                 container.get(0).removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
                 container.get(0).removeEventListener('wheel', MouseWheelHandler, false); //Firefox
             } else {
-                container.get(0).detachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+                container.get(0).detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
             }
         }
 
@@ -655,10 +651,10 @@
         */
         function addMouseWheelHandler(){
             if (container.get(0).addEventListener) {
-                container.get(0).addEventListener("mousewheel", MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-                container.get(0).addEventListener("wheel", MouseWheelHandler, false); //Firefox
+                container.get(0).addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+                container.get(0).addEventListener('wheel', MouseWheelHandler, false); //Firefox
             } else {
-                container.get(0).attachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+                container.get(0).attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
             }
         }
 
@@ -668,7 +664,7 @@
         function addTouchHandler(){
             if(isTouch){
                 //Microsoft pointers
-                MSPointer = getMSPointer();
+                var MSPointer = getMSPointer();
 
                 container.off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
                 container.off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
@@ -681,7 +677,7 @@
         function removeTouchHandler(){
             if(isTouch){
                 //Microsoft pointers
-                MSPointer = getMSPointer();
+                var MSPointer = getMSPointer();
 
                 container.off('touchstart ' + MSPointer.down);
                 container.off('touchmove ' + MSPointer.move);
@@ -697,12 +693,12 @@
 
             //IE >= 11 & rest of browsers
             if(window.PointerEvent){
-                pointer = { down: "pointerdown", move: "pointermove", up: "pointerup"};
+                pointer = { down: 'pointerdown', move: 'pointermove', up: 'pointerup'};
             }
 
             //IE < 11
             else{
-                pointer = { down: "MSPointerDown", move: "MSPointerMove", up: "MSPointerUp"};
+                pointer = { down: 'MSPointerDown', move: 'MSPointerMove', up: 'MSPointerUp'};
             }
 
             return pointer;
@@ -715,8 +711,8 @@
         function getEventsPage(e){
             var events = new Array();
 
-            events['y'] = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
-            events['x'] = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
+            events.y = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
+            events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
 
             return events;
         }
@@ -738,8 +734,8 @@
 
             if(isReallyTouch(e)){
                 var touchEvents = getEventsPage(e);
-                touchStartY = touchEvents['y'];
-                touchStartX = touchEvents['x'];
+                touchStartY = touchEvents.y;
+                touchStartX = touchEvents.x;
             }
         }
 
@@ -757,8 +753,8 @@
 
                 if (!isMoving()) {
                     var touchEvents = getEventsPage(e);
-                    touchEndY = touchEvents['y'];
-                    touchEndX = touchEvents['x'];
+                    touchEndY = touchEvents.y;
+                    touchEndX = touchEvents.x;
 
                   //$('body').append('<span style="position:fixed; top: 250px; left: 20px; z-index:88; font-size: 25px; color: #000;">touchEndY: ' + touchEndY  + '</div>');
 
@@ -906,14 +902,14 @@
 
             for (var t in transforms) {
                 if (el.style[t] !== undefined) {
-                    el.style[t] = "translate3d(1px,1px,1px)";
+                    el.style[t] = 'translate3d(1px,1px,1px)';
                     has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
                 }
             }
 
             document.body.removeChild(el);
 
-            return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+            return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
         }
 
         /**
@@ -928,4 +924,4 @@
         }
 
     };
-}(jQuery, document, window));
+})(jQuery, document, window);
