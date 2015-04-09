@@ -5,6 +5,7 @@
 Pile your sections one over another and access them scrolling or by URL!
 
 - [Live demo](http://alvarotrigo.com/pagePiling/)
+- [Creating hugeinc.com website with pagePiling.js](http://www.onextrapixel.com/2015/04/09/how-to-create-a-beautiful-fullscreen-single-scrolling-page-like-huge-inc/)
 - [Who is using it](https://github.com/alvarotrigo/pagePiling.js#who-is-using-pagepilingjs)
 
 Invite me to a coffee
