@@ -18,6 +18,7 @@
         var lastAnimation = 0;
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var touchStartY = 0, touchStartX = 0, touchEndY = 0, touchEndX = 0;
+        var isScrollAllowed = { 'up':true, 'down':true, 'left':true, 'right':true };
 
         //Defines the delay to take place before being able to scroll to the next section
         //BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and
@@ -589,8 +590,10 @@
         * by 'automatically' scrolling a section or by using the default and normal scrolling.
         */
         function scrolling(type, scrollable){
-            var check;
-            var scrollSection;
+            if (!isScrollAllowed[type]){
+                return;
+            }
+            var check, scrollSection;
 
             if(type == 'down'){
                 check = 'bottom';
@@ -736,6 +739,19 @@
                 var touchEvents = getEventsPage(e);
                 touchStartY = touchEvents.y;
                 touchStartX = touchEvents.x;
+            }
+        }
+
+        /**
+        * Set the allowed scroll direction
+        */
+        function setIsScrollable(value, direction){
+            switch (direction){
+                case 'up': isScrollAllowed.up = value; break;
+                case 'down': isScrollAllowed.down = value; break;
+                case 'left': isScrollAllowed.left = value; break;
+                case 'right': isScrollAllowed.right = value; break;
+                case 'all': PP.setAllowScrolling(value);
             }
         }
 
