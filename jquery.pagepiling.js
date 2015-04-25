@@ -80,8 +80,18 @@
 
         /**
         * Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures.
+        * Optionally a second parameter can be used to specify the direction for which the action will be applied.
+        *
+        * @param directions string containing the direction or directions separated by comma.
         */
         PP.setAllowScrolling = function (value){
+            if(typeof directions != 'undefined'){
+                directions = directions.replace(/ /g,'').split(',');
+
+                $.each(directions, function (index, direction){
+                    setIsScrollable(value, direction);
+                });
+            }
             if(value){
                 PP.setMouseWheelScrolling(true);
                 addTouchHandler();
