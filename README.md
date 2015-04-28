@@ -209,11 +209,21 @@ $.fn.pagepiling.moveTo(3);
 $.fn.pagepiling.moveTo(3);
 ```
 
-### setAllowScrolling(boolean)
+### setAllowScrolling(boolean, [directions])
 Adds or remove the possibility of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default).
 
+- `directions`: (optional parameter) Admitted values: `all`, `up`, `down`, `left`, `right` or a combination of them separated by commas like `down, right`. It defines the direction for which the scrolling will be enabled or disabled.
+
 ```javascript
-$.fn.pagepiling.setAllowScrolling(false);
+
+//disabling scrolling
+$.fn.fullpage.setAllowScrolling(false);
+
+//disabling scrolling down
+$.fn.fullpage.setAllowScrolling(false, 'down');
+
+//disabling scrolling down and right
+$.fn.fullpage.setAllowScrolling(false, 'down, right');
 ```
 
 ### setKeyboardScrolling(boolean)
