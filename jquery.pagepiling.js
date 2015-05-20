@@ -1,13 +1,11 @@
-/* ===========================================================
+/**
  * pagepiling.js 1.5.1
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
  *
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
- *
- * ========================================================== */
-
+ */
 (function ($, document, window, undefined) {
     'use strict';
 
@@ -746,10 +744,13 @@
 
             // additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
             if ( !checkParentForNormalScrollElement(event.target) && isReallyTouch(e) ) {
-                event.preventDefault();
 
                 var activeSection = $('.pp-section.active');
                 var scrollable = isScrollable(activeSection);
+
+                if(!scrollable.length){
+                    event.preventDefault();
+                }
 
                 if (!isMoving()) {
                     var touchEvents = getEventsPage(e);
