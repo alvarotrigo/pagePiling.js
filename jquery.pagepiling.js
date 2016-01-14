@@ -1,5 +1,5 @@
 /**
- * pagepiling.js 1.5.1
+ * pagepiling.js 1.5.2
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * MIT licensed
@@ -134,7 +134,7 @@
             var destiny = '';
 
             if(isNaN(section)){
-                destiny = $('[data-anchor="'+section+'"]');
+                destiny = $(document).find('[data-anchor="'+section+'"]');
             }else{
                 destiny = $('.pp-section').eq( (section -1) );
             }
@@ -424,7 +424,7 @@
             //getting the anchor link in the URL and deleting the `#`
             var value =  window.location.hash.replace('#', '');
             var sectionAnchor = value;
-            var section = $('.pp-section[data-anchor="'+sectionAnchor+'"]');
+            var section = $(document).find('.pp-section[data-anchor="'+sectionAnchor+'"]');
 
             if(section.length > 0){  //if theres any #
                 scrollPage(section, options.animateAnchor);
@@ -463,7 +463,7 @@
                     var section;
 
                     if(isNaN(sectionAnchor)){
-                        section = $('[data-anchor="'+sectionAnchor+'"]');
+                        section = $(document).find('[data-anchor="'+sectionAnchor+'"]');
                     }else{
                         section = $('.pp-section').eq( (sectionAnchor -1) );
                     }
