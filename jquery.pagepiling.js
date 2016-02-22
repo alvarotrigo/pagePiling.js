@@ -573,7 +573,7 @@
                     scrolling('down', scrollable);
 
                 //scrolling up?
-                }else {
+                } else if (delta > 0) {
                     scrolling('up', scrollable);
                 }
 
