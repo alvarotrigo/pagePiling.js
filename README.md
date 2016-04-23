@@ -10,11 +10,6 @@ Pile your sections one over another and access them scrolling or by URL!
 - [Creating hugeinc.com website with pagePiling.js](http://www.onextrapixel.com/2015/04/09/how-to-create-a-beautiful-fullscreen-single-scrolling-page-like-huge-inc/)
 - [Who is using it](https://github.com/alvarotrigo/pagePiling.js#who-is-using-pagepilingjs)
 
-#### Buy me a coffee
-[![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=pagePiling%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
-
-Want a website with pagePiling.js but you don't know how? Need a custom build? <a href="http://alvarotrigo.com/#contact-page">Hire me</a>!
-
 ## Introduction
 Suggestions are more than welcome, not only for feature requests but also for coding style improvements.
 Let's make this a great plugin to make people's lives easier!
@@ -28,19 +23,19 @@ It is also designed to work on touch devices like smartphones or tablets.
 ## Usage
 As you can see in the example files, you will need to include the JavaScript file `jquery.pagepiling.js` (or the minified version `jquery.pagepiling.min.js`) and the css file `jquery.pagepiling.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects.
 
-### Install using Bower
-Optionally, you can install pagePiling.js with Bower:
-Terminal:
-```shell
-bower install pagepiling.js
-```
-
 ###Including files
 ```html
 <link rel="stylesheet" type="text/css" href="jquery.pagepiling.css" />
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="jquery.pagepiling.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="jquery.pagepiling.js"></script>
+```
+
+### Install using Bower
+Optionally, you can install pagePiling.js using Bower:
+Terminal:
+```shell
+bower install pagepiling.js
 ```
 
 ###Required HTML structure
@@ -321,11 +316,12 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://aungthurhahein.me/
 - http://mannydesigns.co
 
-## Donations
-Donations would be more than welcome :)
+#### Love pagePiling.js?
+##### Buy me a coffee!
 
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=pagePiling%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
 
+Want a website with pagePiling.js but you don't know how? Need a custom build? <a href="http://alvarotrigo.com/#contact-page">Hire me</a>!
 
 ## License
 
