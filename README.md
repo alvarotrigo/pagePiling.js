@@ -2,18 +2,18 @@
 
 ![preview](https://raw.github.com/alvarotrigo/pagePiling.js/master/examples/imgs/pagePiling-plugin.png)
 ![compatibility](https://raw.github.com/alvarotrigo/pagePiling.js/master/examples/imgs/compatible.gif)
+
+
 Pile your sections one over another and access them scrolling or by URL!
 
 - [Live demo](http://alvarotrigo.com/pagePiling/)
 - [Creating hugeinc.com website with pagePiling.js](http://www.onextrapixel.com/2015/04/09/how-to-create-a-beautiful-fullscreen-single-scrolling-page-like-huge-inc/)
 - [Who is using it](https://github.com/alvarotrigo/pagePiling.js#who-is-using-pagepilingjs)
 
-Invite me to a coffee
+#### Buy me a coffee
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=pagePiling%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
 
-Customizations of the plugin available upon request for some reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
-
-Would you like to have a website using pilePage.js functionality but you don't know how to use it? I can do it for you for a reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
+Want a website with pagePiling.js but you don't know how? Need a custom build? <a href="http://alvarotrigo.com/#contact-page">Hire me</a>!
 
 ## Introduction
 Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
