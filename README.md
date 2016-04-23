@@ -8,7 +8,7 @@ Pile your sections one over another and access them by scrolling, via URL, a nav
 
 - [Live demo](http://alvarotrigo.com/pagePiling/)
 
-- [Who is using it](https://github.com/alvarotrigo/pagePiling.js#who-is-using-pagepilingjs)
+- [Who is using it](#who-is-using-pagepilingjs)
 
 ##Introduction
 Suggestions are more than welcome, not only for feature requests but also for coding style improvements.
