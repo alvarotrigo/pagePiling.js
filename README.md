@@ -6,9 +6,9 @@
 
 Pile your sections one over another and access them by scrolling, via URL, a navigation, or programatically!
 
-- [Live demo](http://alvarotrigo.com/pagePiling/)
-
-- [Who is using it](#who-is-using-pagepilingjs)
+- **[Live demo](http://alvarotrigo.com/pagePiling/)**
+- [Resources and tutorials](#resources--tutorials)
+- [Who is using pagePiling.js?](#who-is-using-pagepilingjs)
 
 ##Introduction
 Suggestions are more than welcome, not only for feature requests but also for coding style improvements.
