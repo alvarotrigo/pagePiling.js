@@ -25,17 +25,17 @@ It works with browsers with CSS3 support and with the ones which don't have it, 
 
 It is also designed to work on touch devices such as mobile phones or tablets.
 
-## Usage
+## Usagea
 As you can see in the example files, you will need to include the JavaScript file `jquery.pagepiling.js` (or the minified version `jquery.pagepiling.min.js`) and the css file `jquery.pagepiling.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects.
 
-### Install using bower:
+### Install using bower
 Optionally, you can install pagePiling.js with bower:
 Terminal:
 ```shell
 bower install pagepiling.js
 ```
 
-###Including files:
+###Including files
 ```html
 <link rel="stylesheet" type="text/css" href="jquery.pagepiling.css" />
 
@@ -99,7 +99,7 @@ $(document).ready(function() {
 });
 ```
 
-### Accesing sections
+### Accessing sections
 In order to create links to a certain section, you can use a normal URL link  if you are using pagePiling.js with anchor links (using the `anchors` option), then you will be able to use anchor links also to navigate directly to a certain section.
 For example: http://alvarotrigo.com/pagePiling/#page2
 
