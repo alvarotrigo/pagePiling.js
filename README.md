@@ -4,23 +4,23 @@
 ![compatibility](https://raw.github.com/alvarotrigo/pagePiling.js/master/examples/imgs/compatible.gif)
 
 
-Pile your sections one over another and access them scrolling or by URL!
+Pile your sections one over another and access them by scrolling, via URL, a navigation, or programatically!
 
 - [Live demo](http://alvarotrigo.com/pagePiling/)
-- [Creating hugeinc.com website with pagePiling.js](http://www.onextrapixel.com/2015/04/09/how-to-create-a-beautiful-fullscreen-single-scrolling-page-like-huge-inc/)
+
 - [Who is using it](https://github.com/alvarotrigo/pagePiling.js#who-is-using-pagepilingjs)
 
-## Introduction
+##Introduction
 Suggestions are more than welcome, not only for feature requests but also for coding style improvements.
 Let's make this a great plugin to make people's lives easier!
 
-## Compatibility
+##Compatibility
 pagePiling.js is fully functional on all modern browsers, as well as some old ones such as Internet Explorer 8, 9, Opera 12, etc.
 It works with browsers with CSS3 support and with the ones which don't have it, making it ideal for old browsers compatibility.
 
 It is also designed to work on touch devices like smartphones or tablets.
 
-## Usage
+##Usage
 As you can see in the example files, you will need to include the JavaScript file `jquery.pagepiling.js` (or the minified version `jquery.pagepiling.min.js`) and the css file `jquery.pagepiling.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects.
 
 ###Including files
@@ -31,7 +31,7 @@ As you can see in the example files, you will need to include the JavaScript fil
 <script src="jquery.pagepiling.js"></script>
 ```
 
-### Install using Bower
+###Install using Bower
 Optionally, you can install pagePiling.js using Bower:
 Terminal:
 ```shell
@@ -110,7 +110,7 @@ In case you want to have a section with large content and therefore create an sc
 <div class="section pp-scrollable"></div>
 ```
 
-## Options
+##Options
 
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections.
 
@@ -296,9 +296,10 @@ Example:
 	});
 ```
 
-## Resources
+##Resources & Tutorials
 
-[CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/)
+- [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/)
+- [Creating hugeinc.com website with pagePiling.js](http://www.onextrapixel.com/2015/04/09/how-to-create-a-beautiful-fullscreen-single-scrolling-page-like-huge-inc/)
 
 
 ## Who is using pagePiling.js
