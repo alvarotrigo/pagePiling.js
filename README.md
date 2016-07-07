@@ -310,8 +310,12 @@ Example:
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
 
 [![Facebook](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/facebook-pagepiling.gif)](http://www.facebookgroups.com/)
+[![WaltDisney](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/waltDisney.gif)](http://waltdisney.org/galleries)
+[![Logitech](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/logitech.gif)](http://www.logitech.com/en-gb)
 
 - http://www.facebookgroups.com/
+- http://waltdisney.org/galleries
+- http://www.logitech.com/en-gb
 - http://www.adigoodrich.com/
 - https://number26.de/
 - http://fngeats.com/
