@@ -112,7 +112,7 @@ p{
 	font-size: 1.5em;
 }
 .twitter-share-button{
-	position: fixed;
+	position: fixed !important;
 	z-index: 99;
 	right: 149px;
 	top: 9px;
@@ -304,4 +304,19 @@ p{
 * --------------------------------------- */
 #pp-nav.custom .pp-tooltip{
 	color: #AAA;
+}
+
+
+.twitter-share-button{
+	position: fixed;
+	z-index: 99;
+	right: 149px;
+	top: 9px;
+}
+#starGithub{
+	position: fixed;
+	z-index: 99;
+	right: 264px;
+	top: 9px;
+	width: 90px;
 }
