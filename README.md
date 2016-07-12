@@ -2,45 +2,40 @@
 
 ![preview](https://raw.github.com/alvarotrigo/pagePiling.js/master/examples/imgs/pagePiling-plugin.png)
 ![compatibility](https://raw.github.com/alvarotrigo/pagePiling.js/master/examples/imgs/compatible.gif)
-Pile your sections one over another and access them scrolling or by URL!
 
-- [Live demo](http://alvarotrigo.com/pagePiling/)
-- [Creating hugeinc.com website with pagePiling.js](http://www.onextrapixel.com/2015/04/09/how-to-create-a-beautiful-fullscreen-single-scrolling-page-like-huge-inc/)
-- [Who is using it](https://github.com/alvarotrigo/pagePiling.js#who-is-using-pagepilingjs)
 
-Invite me to a coffee
-[![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=pagePiling%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
+Pile your sections one over another and access them by scrolling, via URL, a navigation, or programatically!
 
-Customizations of the plugin available upon request for some reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
+- **[Live demo](http://alvarotrigo.com/pagePiling/)**
+- [Resources and tutorials](#resources--tutorials)
+- [Who is using pagePiling.js?](#who-is-using-pagepilingjs)
 
-Would you like to have a website using pilePage.js functionality but you don't know how to use it? I can do it for you for a reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
-
-## Introduction
-Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
+##Introduction
+Suggestions are more than welcome, not only for feature requests but also for coding style improvements.
 Let's make this a great plugin to make people's lives easier!
 
-## Compatibility
+##Compatibility
 pagePiling.js is fully functional on all modern browsers, as well as some old ones such as Internet Explorer 8, 9, Opera 12, etc.
 It works with browsers with CSS3 support and with the ones which don't have it, making it ideal for old browsers compatibility.
 
-It is also designed to work on touch devices such as mobile phones or tablets.
+It is also designed to work on touch devices like smartphones or tablets.
 
-## Usage
+##Usage
 As you can see in the example files, you will need to include the JavaScript file `jquery.pagepiling.js` (or the minified version `jquery.pagepiling.min.js`) and the css file `jquery.pagepiling.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects.
 
-### Install using bower:
-Optionally, you can install pagePiling.js with bower:
-Terminal:
-```shell
-bower install pagepiling.js
-```
-
-###Including files:
+###Including files
 ```html
 <link rel="stylesheet" type="text/css" href="jquery.pagepiling.css" />
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="jquery.pagepiling.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="jquery.pagepiling.js"></script>
+```
+
+###Install using Bower
+Optionally, you can install pagePiling.js using Bower:
+Terminal:
+```shell
+bower install pagepiling.js
 ```
 
 ###Required HTML structure
@@ -99,7 +94,7 @@ $(document).ready(function() {
 });
 ```
 
-### Accesing sections
+### Accessing sections
 In order to create links to a certain section, you can use a normal URL link  if you are using pagePiling.js with anchor links (using the `anchors` option), then you will be able to use anchor links also to navigate directly to a certain section.
 For example: http://alvarotrigo.com/pagePiling/#page2
 
@@ -115,7 +110,7 @@ In case you want to have a section with large content and therefore create an sc
 <div class="section pp-scrollable"></div>
 ```
 
-## Options
+##Options
 
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections.
 
@@ -301,9 +296,10 @@ Example:
 	});
 ```
 
-## Resources
+##Resources & Tutorials
 
-[CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/)
+- [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/)
+- [Creating hugeinc.com website with pagePiling.js](http://www.onextrapixel.com/2015/04/09/how-to-create-a-beautiful-fullscreen-single-scrolling-page-like-huge-inc/)
 
 
 ## Who is using pagePiling.js
@@ -326,11 +322,12 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://mannydesigns.co
 - http://www.unwander.com/
 
-## Donations
-Donations would be more than welcome :)
+#### Love pagePiling.js?
+##### Buy me a coffee!
 
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=pagePiling%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
 
+Want a website with pagePiling.js but you don't know how? Need a custom build? <a href="http://alvarotrigo.com/#contact-page">Hire me</a>!
 
 ## License
 
