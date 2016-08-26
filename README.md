@@ -25,6 +25,10 @@ It works with browsers with CSS3 support and with the ones which don't have it, 
 
 It is also designed to work on touch devices such as mobile phones or tablets.
 
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack2.png)](http://www.browserstack.com/)
+
+Special thanks to [Browserstack](http://www.browserstack.com/) for supporting pagePiling.js.
+
 ## Usage
 As you can see in the example files, you will need to include the JavaScript file `jquery.pagepiling.js` (or the minified version `jquery.pagepiling.min.js`) and the css file `jquery.pagepiling.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects.
 
