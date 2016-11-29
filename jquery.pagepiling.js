@@ -601,7 +601,7 @@
 
                 if(isAccelerating && isScrollingVertically){
 	                //scrolling down?
-	                if (delta < 0) {
+	                if (delta <= 0) {
 	                    scrolling('down', scrollable);
 
 	                //scrolling up?
