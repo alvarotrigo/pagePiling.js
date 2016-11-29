@@ -601,11 +601,11 @@
 
                 if(isAccelerating && isScrollingVertically){
 	                //scrolling down?
-	                if (delta <= 0) {
+	                if (delta < 0) {
 	                    scrolling('down', scrollable);
 
 	                //scrolling up?
-	                }else if(delta>0){
+	                } else {
 	                    scrolling('up', scrollable);
 	                }
 	            }
