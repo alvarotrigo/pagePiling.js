@@ -1,5 +1,5 @@
 /*!
- * pagepiling.js 1.5.3
+ * pagepiling.js 1.5.4
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * @license MIT licensed

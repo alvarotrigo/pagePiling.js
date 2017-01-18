@@ -1,5 +1,5 @@
 /*!
- * pagepiling.js 1.5.3
+ * pagepiling.js 1.5.4
  *
  * https://github.com/alvarotrigo/pagePiling.js
  * @license MIT licensed
@@ -16,6 +16,7 @@
         var lastAnimation = 0;
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var touchStartY = 0, touchStartX = 0, touchEndY = 0, touchEndX = 0;
+        var scrollings = [];
 
         //Defines the delay to take place before being able to scroll to the next section
         //BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and
@@ -558,29 +559,76 @@
          * http://blogs.sitepointstatic.com/examples/tech/mouse-wheel/index.html
          * http://www.sitepoint.com/html5-javascript-mouse-wheel/
          */
-        function MouseWheelHandler(e) {
-            if(!isMoving()){
-                // cross-browser wheel delta
-                e = window.event || e;
-                var delta = Math.max(-1, Math.min(1,
-                        (e.wheelDelta || -e.deltaY || -e.detail)));
+        var prevTime = new Date().getTime();
 
+        function MouseWheelHandler(e) {
+        	var curTime = new Date().getTime();
+
+        	// cross-browser wheel delta
+            e = e || window.event;
+            var value = e.wheelDelta || -e.deltaY || -e.detail;
+            var delta = Math.max(-1, Math.min(1, value));
+
+            var horizontalDetection = typeof e.wheelDeltaX !== 'undefined' || typeof e.deltaX !== 'undefined';
+            var isScrollingVertically = (Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta)) || (Math.abs(e.deltaX ) < Math.abs(e.deltaY) || !horizontalDetection);
+
+			//Limiting the array to 150 (lets not waste memory!)
+            if(scrollings.length > 149){
+                scrollings.shift();
+            }
+
+            //keeping record of the previous scrollings
+            scrollings.push(Math.abs(value));
+
+            //time difference between the last scroll and the current one
+            var timeDiff = curTime-prevTime;
+            prevTime = curTime;
+
+            //haven't they scrolled in a while?
+            //(enough to be consider a different scrolling action to scroll another section)
+            if(timeDiff > 200){
+                //emptying the array, we dont care about old scrollings for our averages
+                scrollings = [];
+            }
+
+            if(!isMoving()){
                 var activeSection = $('.pp-section.active');
                 var scrollable = isScrollable(activeSection);
 
-                //scrolling down?
-                if (delta < 0) {
-                    scrolling('down', scrollable);
+                var averageEnd = getAverage(scrollings, 10);
+                var averageMiddle = getAverage(scrollings, 70);
+                var isAccelerating = averageEnd >= averageMiddle;
 
-                //scrolling up?
-                }else {
-                    scrolling('up', scrollable);
-                }
+                if(isAccelerating && isScrollingVertically){
+	                //scrolling down?
+	                if (delta < 0) {
+	                    scrolling('down', scrollable);
 
+	                //scrolling up?
+	                }else if(delta>0){
+	                    scrolling('up', scrollable);
+	                }
+	            }
 
                 return false;
             }
          }
+
+        /**
+        * Gets the average of the last `number` elements of the given array.
+        */
+        function getAverage(elements, number){
+            var sum = 0;
+
+            //taking `number` elements from the end to make the average, if there are not enought, 1
+            var lastElements = elements.slice(Math.max(elements.length - number, 1));
+
+            for(var i = 0; i < lastElements.length; i++){
+                sum = sum + lastElements[i];
+            }
+
+            return Math.ceil(sum/number);
+        }
 
         /**
         * Determines the way of scrolling up or down:
@@ -606,7 +654,7 @@
                     return true;
                 }
             }else{
-                // moved up/down
+                //moved up/down
                 scrollSection();
             }
         }
