@@ -46,7 +46,9 @@ bower install pagepiling.js
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.pagepiling.js"></script>
 ```
-[![CDNJS](https://img.shields.io/cdnjs/v/pagepiling.svg)](https://cdnjs.com/libraries/pagePiling.js)
+
+###Optional use of CDN
+If you prefer to use a CDN to load the needed files, pagePiling.js is in CDNJS: https://cdnjs.com/libraries/pagePiling.js
 
 ###Required HTML structure
 Each section will be defined with a `div` containing the `section` class.
