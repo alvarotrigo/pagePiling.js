@@ -1,5 +1,5 @@
 # pagePiling.js
-
+-
 ![preview](https://raw.github.com/alvarotrigo/pagePiling.js/master/examples/imgs/pagePiling-plugin.png)
 ![compatibility](https://raw.github.com/alvarotrigo/pagePiling.js/master/examples/imgs/compatible.gif)
 Pile your sections one over another and access them scrolling or by URL!
@@ -46,6 +46,7 @@ bower install pagepiling.js
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.pagepiling.js"></script>
 ```
+[![CDNJS](https://img.shields.io/cdnjs/v/pagepiling.svg)](https://cdnjs.com/libraries/pagePiling.js)
 
 ###Required HTML structure
 Each section will be defined with a `div` containing the `section` class.
