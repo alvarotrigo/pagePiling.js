@@ -39,7 +39,7 @@ Terminal:
 bower install pagepiling.js
 ```
 
-###Including files:
+### Including files:
 ```html
 <link rel="stylesheet" type="text/css" href="jquery.pagepiling.css" />
 
@@ -47,10 +47,10 @@ bower install pagepiling.js
 <script type="text/javascript" src="jquery.pagepiling.js"></script>
 ```
 
-###Optional use of CDN
+### Optional use of CDN
 If you prefer to use a CDN to load the needed files, pagePiling.js is in CDNJS: https://cdnjs.com/libraries/pagePiling.js
 
-###Required HTML structure
+### Required HTML structure
 Each section will be defined with a `div` containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
 ```html
@@ -62,7 +62,7 @@ The active section by default will be the first section, which is taken as the h
 </div>
 ```
 
-###Initialization
+### Initialization
 All you need to do is call the plugin inside a `$(document).ready` function:
 
 ```javascript
@@ -239,7 +239,7 @@ $.fn.pagepiling.setScrollingSpeed(700);
 
 
 ## Callbacks
-###afterLoad (`anchorLink`, `index`)
+### afterLoad (`anchorLink`, `index`)
 Callback fired once the sections have been loaded, after the scrolling has ended.
 Parameters:
 
@@ -268,7 +268,7 @@ Example:
 	});
 ```
 
-###onLeave (`index`, `nextIndex`, `direction`)
+### onLeave (`index`, `nextIndex`, `direction`)
 This callback is fired once the user leaves a section, in the transition to the new section.
 
 Parameters:
@@ -295,7 +295,7 @@ Example:
 ```
 
 
-###afterRender()
+### afterRender()
 This callback is fired just after the structure of the page is generated. This is the callback you want to use to initialize other plugins or fire any code which requires the document to be ready (as this plugin modifies the DOM to create the resulting structure).
 
 Example:
