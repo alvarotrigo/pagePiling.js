@@ -1,6 +1,6 @@
 {
   "name": "pagepiling.js",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "Create a scrolling pile of sections",
   "main": "jquery.pagepiling.js",
   "scripts": {
