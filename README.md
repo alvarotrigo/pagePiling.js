@@ -269,7 +269,7 @@ Example:
 ```
 
 ### onLeave (`index`, `nextIndex`, `direction`)
-This callback is fired once the user leaves a section, in the transition to the new section.
+This callback is fired once the user leaves a section, in the transition to the new section. Returning `false` will cancel the move before it takes place.
 
 Parameters:
 
@@ -294,6 +294,22 @@ Example:
 	});
 ```
 
+#### Cancelling the move before it takes place
+
+You can cancel the move by returning `false` on the `onLeave` callback:
+
+Example:
+
+```javascript
+	$('#pagepiling').pagepiling({
+		onLeave: function(index, nextIndex, direction){
+			//it won't move if the destination is the 3rd section
+			if(nextIndex == 3){
+				return false;
+			}
+		}
+	});
+```
 
 ### afterRender()
 This callback is fired just after the structure of the page is generated. This is the callback you want to use to initialize other plugins or fire any code which requires the document to be ready (as this plugin modifies the DOM to create the resulting structure).
