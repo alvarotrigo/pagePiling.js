@@ -49,7 +49,6 @@
             afterRender: null
         }, custom);
 
-        //Reading Navigation Property Object
         if(options.navigation){
             makeNavigationObject();
         }
@@ -191,8 +190,18 @@
         PP.setAllowScrolling(true);
 
         //creating the navigation dots
+
+        var emptyObject = options.navigation.textColor==""
+                        && options.navigation.textColor==""
+                        && options.navigation.textColor==""
+                        && options.navigation.textColor=="";
         if (!$.isEmptyObject(options.navigation) ) {
-            addVerticalNavigation();
+
+            if(!emptyObject)
+            {
+                addVerticalNavigation();
+            }
+            
         }
 
          var zIndex = $('.pp-section').length;
