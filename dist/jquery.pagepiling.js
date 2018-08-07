@@ -35,12 +35,7 @@
             loopBottom: false,
             loopTop: false,
             css3: true,
-            navigation: {
-                textColor: '#000',
-                bulletsColor: '#000',
-                position: 'right',
-                tooltips: []
-            },
+            navigation: {},
             normalScrollElements: null,
             normalScrollElementTouchThreshold: 5,
             touchSensitivity: 5,
@@ -53,6 +48,36 @@
             onLeave: null,
             afterRender: null
         }, custom);
+
+        //Reading Navigation Property Object
+        if(options.navigation){
+            makeNavigationObject();
+        }
+
+        function makeNavigationObject(){
+
+            //Handling defaults for nothing
+            if(typeof options.navigation.textColor === "undefined"){
+                options.navigation.textColor = "";
+            }
+            if(typeof options.navigation.bulletsColor === "undefined"){
+                options.navigation.bulletsColor = "";
+            }
+            if(typeof options.navigation.position === "undefined"){
+                options.navigation.position = "";
+            }
+            if(typeof options.navigation.tooltips === "undefined"){
+                options.navigation.tooltips = "";
+            }
+
+            options.navigation = {
+                textColor: options.navigation.textColor,
+                bulletsColor: options.navigation.bulletsColor,
+                position: options.navigation.position,
+                tooltips: options.navigation.tooltips
+            };
+
+        };
 
 
         //easeInQuart animation included in the plugin
