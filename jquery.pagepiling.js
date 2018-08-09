@@ -256,6 +256,12 @@
                 setURLHash(v.anchorLink, v.sectionIndex);
             }
 
+            if ($.isFunction(options.onLeave)) {
+                if (options.onLeave.call(this, v.leavingSection, (v.sectionIndex + 1), v.yMovement) === false) {
+                    return;
+                }
+            }
+
             v.destination.addClass('active').siblings().removeClass('active');
 
             v.sectionsToMove = getSectionsToMove(v);
@@ -283,8 +289,6 @@
 
                 v.animateSection = destination;
             }
-
-            $.isFunction(options.onLeave) && options.onLeave.call(this, v.leavingSection, (v.sectionIndex + 1), v.yMovement);
 
             performMovement(v);
 
