@@ -696,11 +696,13 @@
         * After this function is called, the mousewheel and trackpad movements will scroll through sections
         */
         function addMouseWheelHandler(){
-            if (container.get(0).addEventListener) {
-                container.get(0).addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-                container.get(0).addEventListener('wheel', MouseWheelHandler, false); //Firefox
-            } else {
-                container.get(0).attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+            if (container.length) {
+                if (container.get(0).addEventListener) {
+                    container.get(0).addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+                    container.get(0).addEventListener('wheel', MouseWheelHandler, false); //Firefox
+                } else {
+                    container.get(0).attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+                }
             }
         }
 
