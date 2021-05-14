@@ -605,7 +605,7 @@
 	                    scrolling('down', scrollable);
 
 	                //scrolling up?
-	                }else if(delta>0){
+	                } else {
 	                    scrolling('up', scrollable);
 	                }
 	            }
