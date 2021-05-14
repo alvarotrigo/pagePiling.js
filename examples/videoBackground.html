@@ -41,22 +41,19 @@
 			text-align:center;
 		}
 
-		#myVideo{
-			position: absolute;
-			z-index: 4;
-			right: 0;
-			bottom: 0;
-			top:0;
-			right:0;
-			width: 100%;
-			height: 100%;
-			background-size: 100% 100%;
-	 		background-color: black; /* in case the video doesn't fit the whole page*/
-	  		background-image: /* our video */;
-	  		background-position: center center;
-	  		background-size: contain;
-	   		object-fit: cover; /*cover video background */
-		}
+    #myVideo{
+      position: fixed; 
+      right: 0; 
+      bottom: 0;
+      min-width: 100%; 
+      min-height: 100%;
+      width: auto; 
+      height: auto; 
+      z-index: -100;
+			background: url(imgs/flowers.jpg) no-repeat;  /* img bg for mobile */
+      background-size: cover; 
+      object-fit: cover; /*cover video background */
+    }
 
 		/* Layer with position absolute in order to have it over the video
 		* --------------------------------------- */
