@@ -27,7 +27,7 @@
   "homepage": "https://github.com/alvarotrigo/pagePiling.js#readme",
   "namespace": "$.fn.pagepiling",
   "devDependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "gulp-clean-css": "^2.0.8",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^2.0.4",
